@@ -1,0 +1,47 @@
+// Глобальные стили
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "PT Sans";
+	background-color: #f7f7f7;
+	color: #333333;
+}
+
+.main {
+  background-color: #ffffff;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 2px 1px 0 #0000001a;
+
+  &__top {
+    padding: 16px 24px;
+    border-bottom: 1px solid #EEEEEE;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__title {
+    padding: 2.5px 0;
+    font-size: 24px;
+    line-height: 130%;
+    font-weight: 700;
+  }
+
+  &__content {
+    padding: 0 24px;
+  }
+}
