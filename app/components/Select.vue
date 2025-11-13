@@ -7,19 +7,18 @@
       </button>
     </div>
 
-    <transition name="select-fade">
-      <div v-if="isOpen" :class="$style.select__dropdown">
-        <div v-for="option in options" :key="option.value" :class="[
-          $style.select__option,
-          option.value === modelValue ? $style['select__option--active'] : ''
-        ]" @click="selectOption(option)">
-          <span>{{ option.label }}</span>
-          <span v-if="option.value === modelValue" :class="$style.select__check">
-            <icons-tick-icon />
-          </span>
-        </div>
+    <div v-if="isOpen" :class="$style.select__dropdown">
+      <div v-for="option in options" :key="option.value" :class="[
+        $style.select__option,
+        option.value === modelValue ? $style['select__option--active'] : ''
+      ]" @click="selectOption(option)">
+        <span>{{ option.label }}</span>
+        <span v-if="option.value === modelValue" :class="$style.select__check">
+          <icons-tick-icon />
+        </span>
       </div>
-    </transition>
+    </div>
+
   </div>
 </template>
 
@@ -165,17 +164,5 @@ onBeforeUnmount(() => {
     width: 20px;
     height: 20px;
   }
-}
-
-/* Анимация */
-.select-fade-enter-active,
-.select-fade-leave-active {
-  transition: all 0.2s ease;
-}
-
-.select-fade-enter-from,
-.select-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-4px);
 }
 </style>

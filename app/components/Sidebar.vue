@@ -11,9 +11,9 @@
         <div :class="[$style.sidebar__icon, $style['request-icon'], { [$style.collapsed]: isCollapsed }]">
           <LazyIconsRequestsIcon />
         </div>
-        <transition name="fade">
-          <div v-if="!isCollapsed" :class="$style.sidebar__text">Заявки</div>
-        </transition>
+
+        <div v-if="!isCollapsed" :class="$style.sidebar__text">Заявки</div>
+
       </div>
     </div>
   </aside>
@@ -84,7 +84,7 @@ const props = defineProps({
     transition: color 0.2s ease;
 
     &.active {
-      .request-icon  path {
+      .request-icon path {
         fill: #fc8507;
       }
 

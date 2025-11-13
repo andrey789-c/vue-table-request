@@ -8,7 +8,7 @@
     </div>
     <div class="main__content">
       <div :class="$style.action">
-        <button @click="submit" :class="$style.button">Отправить</button>
+        <button @click="submit" :class="[$style.button, {[$style.disabled]: isSubmit}]" :disabled="isSubmit">Сохранить</button>
       </div>
       <TableProducts :products="products" :errors="errors" />
     </div>
@@ -31,6 +31,7 @@ const router = useRouter()
 const id = route.query.id as string;
 
 const products = reactive(props.products);
+const isSubmit = ref(false)
 
 const errors: IError[] = reactive(products.map(() => ({
   quantity: false,
@@ -41,6 +42,8 @@ const errors: IError[] = reactive(products.map(() => ({
 const submit = () => {
 
   let valid = true;
+
+  isSubmit.value = true
 
   const quantityRegex = /^\d+$/;
   const priceRegex = /^\d+(\.\d+)?$/;
@@ -57,6 +60,8 @@ const submit = () => {
 
 
   if (!valid) {
+    setTimeout(() => isSubmit.value = false, 3000)
+    
     return;
   }
 
@@ -72,8 +77,10 @@ const submit = () => {
 
   localStorage.setItem('table-data', JSON.stringify(savedData));
 
+
   router.push('/')
-  
+  isSubmit.value = false
+
 }
 
 </script>
@@ -95,6 +102,11 @@ const submit = () => {
     color: #ffffff;
     border-radius: 8px;
     cursor: pointer;
+
+    &.disabled {
+      background: #F2F2F2;
+      color: #AFAFAF;
+    }
   }
 }
 </style>
